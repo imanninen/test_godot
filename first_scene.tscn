@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://o8lx8vysihq2"]
+[gd_scene load_steps=8 format=3 uid="uid://o8lx8vysihq2"]
 
 [ext_resource type="Script" path="res://aboba.gd" id="1_1bp27"]
 [ext_resource type="Texture2D" uid="uid://dky24olesx0cv" path="res://icon.svg" id="1_lse16"]
+[ext_resource type="Script" path="res://input_nandle.gd" id="3_i4f1x"]
+[ext_resource type="Script" path="res://test_moving.gd" id="4_aqvcn"]
+[ext_resource type="Script" path="res://sprite_move.gd" id="5_aabp0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krk70"]
 radius = 26.0768
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xm6ma"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,3 +25,21 @@ shape = SubResource("CircleShape2D_krk70")
 position = Vector2(0, 1)
 scale = Vector2(0.390625, 0.363281)
 texture = ExtResource("1_lse16")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("3_i4f1x")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("4_aqvcn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_xm6ma")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(266, -50)
+texture = ExtResource("1_lse16")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(427, 304)
+texture = ExtResource("1_lse16")
+script = ExtResource("5_aabp0")

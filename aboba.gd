@@ -8,7 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	gg += 1
-	if gg % 60 == 0:
-		print(gg)
-	
+	pass
