@@ -15,7 +15,6 @@ func _process(delta):
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	var velocity = input_direction * speed
-	print(velocity)
 	return velocity
 	
 #func move(direction):

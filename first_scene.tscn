@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://o8lx8vysihq2"]
+[gd_scene load_steps=9 format=3 uid="uid://o8lx8vysihq2"]
 
 [ext_resource type="Script" path="res://aboba.gd" id="1_1bp27"]
+[ext_resource type="Script" path="res://root_script.gd" id="1_6wf8t"]
 [ext_resource type="Texture2D" uid="uid://dky24olesx0cv" path="res://icon.svg" id="1_lse16"]
 [ext_resource type="Script" path="res://input_nandle.gd" id="3_i4f1x"]
 [ext_resource type="Script" path="res://test_moving.gd" id="4_aqvcn"]
@@ -12,6 +13,8 @@ radius = 26.0768
 [sub_resource type="CircleShape2D" id="CircleShape2D_xm6ma"]
 
 [node name="Node2D" type="Node2D"]
+z_index = 1
+script = ExtResource("1_6wf8t")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(266, 158)
@@ -39,7 +42,9 @@ shape = SubResource("CircleShape2D_xm6ma")
 position = Vector2(266, -50)
 texture = ExtResource("1_lse16")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(427, 304)
+[node name="Player" type="Sprite2D" parent="."]
+z_as_relative = false
+position = Vector2(389.5, 343)
+scale = Vector2(0.53, 0.5)
 texture = ExtResource("1_lse16")
 script = ExtResource("5_aabp0")
