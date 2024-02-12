@@ -28,29 +28,19 @@ func get_input():
 	var velocity = input_direction * speed
 	return velocity
 	
-#func move(direction):
-	#global_position += direction
-#
-#func triggerKey(key: String):
-	#match key:
-		#\"A\": 
-			#move(Vector2(-10, 0))
-		#\"D\":
-			#move(Vector2(10, 0))
-		#\"W\":
-			#move(Vector2(0, -10))
-		#\"S\": 
-			#move(Vector2(0, 10))	
-#
-#
-#func _input(event):
-	#print(event.as_text())
-	#if event is InputEventKey:
-		#triggerKey(event.as_text())
+func _input(event):
+	if event is InputEventMouseButton:
+		move_player(event.position)
+   # Print the size of the viewport.
+	# print(\"Viewport Resolution is: \", get_viewport().get_visible_rect().size)
+	
+signal wants_to_move(position)
+
+func move_player(pos):
+	wants_to_move.emit(pos)
 "
 
 [node name="Node2D" type="Node2D"]
-z_index = 1
 script = ExtResource("1_6wf8t")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
@@ -70,8 +60,7 @@ texture = ExtResource("1_lse16")
 script = ExtResource("3_i4f1x")
 
 [node name="Player" type="Sprite2D" parent="."]
-z_as_relative = false
-position = Vector2(389.5, 343)
-scale = Vector2(0.53, 0.5)
+position = Vector2(427, 304)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_lse16")
 script = SubResource("GDScript_u2q2n")
