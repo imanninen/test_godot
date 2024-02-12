@@ -1,16 +1,53 @@
-[gd_scene load_steps=9 format=3 uid="uid://o8lx8vysihq2"]
+[gd_scene load_steps=7 format=3 uid="uid://o8lx8vysihq2"]
 
 [ext_resource type="Script" path="res://aboba.gd" id="1_1bp27"]
 [ext_resource type="Script" path="res://root_script.gd" id="1_6wf8t"]
 [ext_resource type="Texture2D" uid="uid://dky24olesx0cv" path="res://icon.svg" id="1_lse16"]
 [ext_resource type="Script" path="res://input_nandle.gd" id="3_i4f1x"]
-[ext_resource type="Script" path="res://test_moving.gd" id="4_aqvcn"]
-[ext_resource type="Script" path="res://sprite_move.gd" id="5_aabp0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krk70"]
 radius = 26.0768
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xm6ma"]
+[sub_resource type="GDScript" id="GDScript_u2q2n"]
+script/source = "extends Sprite2D
+
+var speed = 10
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var tmp = get_input()
+	global_position += tmp
+	
+func get_input():
+	var input_direction = Input.get_vector(\"left\", \"right\", \"up\", \"down\")
+	var velocity = input_direction * speed
+	return velocity
+	
+#func move(direction):
+	#global_position += direction
+#
+#func triggerKey(key: String):
+	#match key:
+		#\"A\": 
+			#move(Vector2(-10, 0))
+		#\"D\":
+			#move(Vector2(10, 0))
+		#\"W\":
+			#move(Vector2(0, -10))
+		#\"S\": 
+			#move(Vector2(0, 10))	
+#
+#
+#func _input(event):
+	#print(event.as_text())
+	#if event is InputEventKey:
+		#triggerKey(event.as_text())
+"
 
 [node name="Node2D" type="Node2D"]
 z_index = 1
@@ -32,19 +69,9 @@ texture = ExtResource("1_lse16")
 [node name="Node" type="Node" parent="."]
 script = ExtResource("3_i4f1x")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("4_aqvcn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CircleShape2D_xm6ma")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(266, -50)
-texture = ExtResource("1_lse16")
-
 [node name="Player" type="Sprite2D" parent="."]
 z_as_relative = false
 position = Vector2(389.5, 343)
 scale = Vector2(0.53, 0.5)
 texture = ExtResource("1_lse16")
-script = ExtResource("5_aabp0")
+script = SubResource("GDScript_u2q2n")
